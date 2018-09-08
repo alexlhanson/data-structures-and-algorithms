@@ -16,3 +16,13 @@ Given an input array and an item to insert, return an array where the item has b
 
 ### Solution
 ![whiteboard02](./assets/02_array_shift.jpg)
+
+## 03- Binary Search in Array
+Search a sorted array for target value and return its index
+
+### Challenge
+Given a sorted input array and target value to search, return the index of the search value if it is found and if it is not in the array return -1. The binary version of this search utilizes finding the middle of the array and systematically discounting half the values with every operation.  
+
+### Solution
+![whiteboard03a](./assets/03_array_binary_search_a.jpg)
+![whiteboard03b](./assets/03_array_binary_search_b.jpg)
