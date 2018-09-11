@@ -1,0 +1,27 @@
+{
+  "name": "04_linked_list",
+  "version": "1.0.0",
+  "description": "Linked_list",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexlhanson/data-structures-and-algorithms.git"
+  },
+  "author": "Alex Hanson <alexlhanson@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alexlhanson/data-structures-and-algorithms/issues"
+  },
+  "homepage": "https://github.com/alexlhanson/data-structures-and-algorithms#readme",
+  "dependencies": {
+    "eslint": "^5.5.0",
+    "jest": "^23.6.0"
+  }
+}
