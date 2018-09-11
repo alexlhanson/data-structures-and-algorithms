@@ -10,8 +10,7 @@ describe('Linked-List constructor module', () => {
 
   test('should instantiate a linked-list with head value of null', () => {
     let actual = new LinkedList();
-    let expected = null;
-    expect(actual.head.next).toBe(expected);
+    expect(actual.head).toBeNull();
   })
 
 });
