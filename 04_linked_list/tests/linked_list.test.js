@@ -22,14 +22,14 @@ describe('Linked-List constructor module', () => {
     myLinkedList.append('hello');
     myLinkedList.append('World');
     expect(myLinkedList.tail.value).toBe('World');
-  })
+  });
 
   test('should maintain reference on head after appending', () => {
     let myLinkedList = new LinkedList();
     myLinkedList.append('hello');
     myLinkedList.append('World');
     expect(myLinkedList.head.value).toBe('hello');
-  })
+  });
 
   test('should show linked-list works with various datatypes', () => {
     let myLinkedList = new LinkedList();
@@ -42,6 +42,24 @@ describe('Linked-List constructor module', () => {
 
     myLinkedList.append(['Sam']);
     expect(myLinkedList.tail.value).toEqual(['Sam']);
-    
-  })
+  });
+
+  /********************************************************************************
+  *         prepend method tests                                                  *
+  ********************************************************************************/
+
+  test('Should show that node is added to the beginning of linked list', () => {
+    let myLinkedList = new LinkedList();
+    myLinkedList.append('world');
+    myLinkedList.prepend('hello');
+    expect(myLinkedList.head.value).toBe('hello');
+  });
+
+  test('Should show that after prepending the tail will maintain its reference', () => {
+    let myLinkedList = new LinkedList();
+    myLinkedList.append('world');
+    myLinkedList.prepend('hello');
+    expect(myLinkedList.tail.value).toBe('world');
+  });
+
 });

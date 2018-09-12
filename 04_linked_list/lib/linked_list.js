@@ -23,6 +23,17 @@ class LinkedList{
     this.tail = this.current;
   } 
 
+  //prepend method
+  prepend(value){
+    if (!this.head){
+      this.head = new Node (value);
+      this.tail = this.head;
+    };
+    this.current = new Node(value);
+    this.current.next = this.head;
+    this.head = this.current;
+  }
+
 };
 
 module.exports = LinkedList;
