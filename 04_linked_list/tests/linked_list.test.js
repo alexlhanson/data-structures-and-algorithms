@@ -67,13 +67,39 @@ describe('Linked-List constructor module', () => {
 *         reverse method tests                                                  *
 ********************************************************************************/
 
-  test('Should show that a linked list with three nodes will reverse their order of links',() => {
+  // test('Should show that a linked list with three nodes will reverse their order of links',() => {
+  //   let myLinkedList = new LinkedList();
+  //   myLinkedList.append('hello');
+  //   myLinkedList.append('world');
+  //   myLinkedList.append('!');
+  //   myLinkedList.reverse();
+  //   expect(myLinkedList.tail.value).toBe('hello');
+  //   expect(myLinkedList.head.value).toBe('!');
+  // });
+
+  /********************************************************************************
+  *         remove method tests                                                   *
+  ********************************************************************************/
+  test('should show that when world is removed that the next node after hello is !', () => {
+    
     let myLinkedList = new LinkedList();
     myLinkedList.append('hello');
     myLinkedList.append('world');
     myLinkedList.append('!');
-    myLinkedList.reverse();
-    expect(myLinkedList.tail.value).toBe('hello');
-    expect(myLinkedList.head.value).toBe('!');
-  });
+    myLinkedList.remove(1);
+    expect(myLinkedList.head.next.value).toBe('!');
+  })
+
+  /********************************************************************************
+  *         serialize & deserialize test                                                       *
+  ********************************************************************************/
+  
+  test('should return a linked-list as raw data buffer and back to linked list', () => {
+    let myLinkedList = new LinkedList();
+    myLinkedList.append('hello');
+    myLinkedList.append('World');
+    myLinkedList.serialize();
+    myLinkedList.deSerialize();
+    expect(myLinkedList.reconstituted.tail.value).toBe('World');
+  })
 });

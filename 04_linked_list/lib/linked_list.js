@@ -1,6 +1,7 @@
 'use strict';
 
 const Node = require('./ll_node');
+const fs = require('fs');
 /********************************************************************************
 *         LINKED LIST MODULE                                                    *
 ********************************************************************************/
@@ -54,18 +55,29 @@ class LinkedList{
 
   //remove method
   remove(offset){
-
+    this.current = this.head;
+    if (offset > 0) {
+      for (let i = 0; i < offset; i++){
+        this.prev = this.current;
+        this.current = this.current.next;
+        this.next = this.current.next;
+      }
+      this.prev.next = this.next;
+      this.current.next = null;
+    }
   }
 
   //serialize method - turns Linked List into raw data
   serialize(){
-
+    this.stringy = JSON.stringify(this);
+    this.buffy = Buffer.alloc(this.stringy.length, this.stringy);
   }
 
   //de-serialize method - turns serialized linked list back into linked list
   deSerialize(){
-    
-  }
+    this.stringy = this.buffy.toString();
+    this.reconstituted = JSON.parse(this.stringy);
+ }
 };
 
 module.exports = LinkedList;
