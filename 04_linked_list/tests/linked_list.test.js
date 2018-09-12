@@ -13,4 +13,35 @@ describe('Linked-List constructor module', () => {
     expect(actual.head).toBeNull();
   })
 
+  /********************************************************************************
+  *         append method tests                                                   *
+  ********************************************************************************/
+
+  test('should add new Nodes to LinkedList with tail showing World', () => {
+    let myLinkedList = new LinkedList();
+    myLinkedList.append('hello');
+    myLinkedList.append('World');
+    expect(myLinkedList.tail.value).toBe('World');
+  })
+
+  test('should maintain reference on head after appending', () => {
+    let myLinkedList = new LinkedList();
+    myLinkedList.append('hello');
+    myLinkedList.append('World');
+    expect(myLinkedList.head.value).toBe('hello');
+  })
+
+  test('should show linked-list works with various datatypes', () => {
+    let myLinkedList = new LinkedList();
+
+    myLinkedList.append(3);
+    expect(myLinkedList.head.value).toBe(3);
+
+    myLinkedList.append(true);
+    expect(myLinkedList.tail.value).toBe(true);
+
+    myLinkedList.append(['Sam']);
+    expect(myLinkedList.tail.value).toEqual(['Sam']);
+    
+  })
 });
