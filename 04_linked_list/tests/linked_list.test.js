@@ -42,6 +42,7 @@ describe('Linked-List constructor module', () => {
 
     myLinkedList.append(['Sam']);
     expect(myLinkedList.tail.value).toEqual(['Sam']);
+
   });
 
   /********************************************************************************
@@ -62,4 +63,17 @@ describe('Linked-List constructor module', () => {
     expect(myLinkedList.tail.value).toBe('world');
   });
 
+/********************************************************************************
+*         reverse method tests                                                  *
+********************************************************************************/
+
+  test('Should show that a linked list with three nodes will reverse their order of links',() => {
+    let myLinkedList = new LinkedList();
+    myLinkedList.append('hello');
+    myLinkedList.append('world');
+    myLinkedList.append('!');
+    myLinkedList.reverse();
+    expect(myLinkedList.tail.value).toBe('hello');
+    expect(myLinkedList.head.value).toBe('!');
+  });
 });
