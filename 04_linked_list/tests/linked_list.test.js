@@ -67,15 +67,15 @@ describe('Linked-List constructor module', () => {
 *         reverse method tests                                                  *
 ********************************************************************************/
 
-  // test('Should show that a linked list with three nodes will reverse their order of links',() => {
-  //   let myLinkedList = new LinkedList();
-  //   myLinkedList.append('hello');
-  //   myLinkedList.append('world');
-  //   myLinkedList.append('!');
-  //   myLinkedList.reverse();
-  //   expect(myLinkedList.tail.value).toBe('hello');
-  //   expect(myLinkedList.head.value).toBe('!');
-  // });
+  test('Should show that a linked list with three nodes will reverse their order of links',() => {
+    let myLinkedList = new LinkedList();
+    myLinkedList.append('hello');
+    myLinkedList.append('world');
+    myLinkedList.append('!');
+    myLinkedList.reverse();
+    expect(myLinkedList.tail.value).toBe('hello');
+    expect(myLinkedList.head.value).toBe('!');
+  });
 
   /********************************************************************************
   *         remove method tests                                                   *
@@ -88,7 +88,17 @@ describe('Linked-List constructor module', () => {
     myLinkedList.append('!');
     myLinkedList.remove(1);
     expect(myLinkedList.head.next.value).toBe('!');
-  })
+  });
+
+  test('should show that when the first node is removed that the head is now world', () => {
+    
+    let myLinkedList = new LinkedList();
+    myLinkedList.append('hello');
+    myLinkedList.append('world');
+    myLinkedList.append('!');
+    myLinkedList.remove(0);
+    expect(myLinkedList.head.value).toBe('world');
+  });
 
   /********************************************************************************
   *         serialize & deserialize test                                                       *
@@ -99,7 +109,9 @@ describe('Linked-List constructor module', () => {
     myLinkedList.append('hello');
     myLinkedList.append('World');
     myLinkedList.serialize();
+    console.log(myLinkedList);
     myLinkedList.deSerialize();
+    console.log(myLinkedList);
     expect(myLinkedList.reconstituted.tail.value).toBe('World');
-  })
+  });
 });

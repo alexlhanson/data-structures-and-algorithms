@@ -14,46 +14,44 @@ class LinkedList{
     this.prev = null;
   }
 
-  // append method
+  // append method - BigO = O(1)
   append(value){
-    if (!this.head){
-      this.head = new Node (value);
-      this.tail = this.head;
+    if (!this.tail){
+      this.head = this.tail = new Node (value);
     } else {
-    this.current = new Node(value);
-    this.tail.next = this.current;
-    this.tail = this.current;
+    // this.current = new Node(value);
+    this.tail.next = new Node(value);
+    this.tail = this.tail.next;
     }
   } 
 
-  //prepend method
+  //prepend method - BigO = O(1)
   prepend(value){
     if (!this.head){
-      this.head = new Node (value);
-      this.tail = this.head;
+      this.head = this.tail = new Node (value);
     };
     this.current = new Node(value);
     this.current.next = this.head;
     this.head = this.current;
   }
 
-  //reverse method - TODO GET OPERATIONAL
+  //reverse method - BigO = O(n)
   reverse(){
     this.current = this.head;
+    this.next = this.current.next;
 
     while (this.current.next != null){
-      this.next = this.current.next;
-      console.log(this);
       this.current.next = this.prev;
       this.prev = this.current;
       this.current = this.next;
+      this.next = this.current.next;
     };
-    console.log(this);
-    this.head = this.tail;
-    this.current = this.head;
+    this.current.next = this.prev;
+    this.tail = this.head;
+    this.head = this.current;
   }
 
-  //remove method
+  //remove method  - BigO = O(n)
   remove(offset){
     this.current = this.head;
     if (offset > 0) {
@@ -64,20 +62,25 @@ class LinkedList{
       }
       this.prev.next = this.next;
       this.current.next = null;
+    } else {
+      this.next = this.current.next;
+      this.head = this.next;
+      this.current.next = null;
     }
   }
 
-  //serialize method - turns Linked List into raw data
+  //serialize method - turns Linked List into raw data -  - BigO = O(1)
   serialize(){
-    this.stringy = JSON.stringify(this);
-    this.buffy = Buffer.alloc(this.stringy.length, this.stringy);
+    let serializedList = JSON.stringify(this.head);
+    return serializedList = Buffer.alloc(serializedList.length, serializedList);
   }
 
-  //de-serialize method - turns serialized linked list back into linked list
+  //de-serialize method - turns serialized linked list back into linked list  - BigO = O(1)
   deSerialize(){
-    this.stringy = this.buffy.toString();
-    this.reconstituted = JSON.parse(this.stringy);
- }
+    // console.log(this);
+    let deSerializedList = this.toString();
+    return deSerializedList = JSON.parse(deSerializedList);
+  }
 };
 
 module.exports = LinkedList;
