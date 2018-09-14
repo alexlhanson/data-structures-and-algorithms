@@ -63,11 +63,11 @@ describe('Linked-List constructor module', () => {
     expect(myLinkedList.tail.value).toBe('world');
   });
 
-/********************************************************************************
-*         reverse method tests                                                  *
-********************************************************************************/
+  /********************************************************************************
+  *         reverse method tests                                                  *
+  ********************************************************************************/
 
-  test('Should show that a linked list with three nodes will reverse their order of links',() => {
+  test('Should show that a linked list with three nodes will reverse their order of links', () => {
     let myLinkedList = new LinkedList();
     myLinkedList.append('hello');
     myLinkedList.append('world');
@@ -81,7 +81,7 @@ describe('Linked-List constructor module', () => {
   *         remove method tests                                                   *
   ********************************************************************************/
   test('should show that when world is removed that the next node after hello is !', () => {
-    
+
     let myLinkedList = new LinkedList();
     myLinkedList.append('hello');
     myLinkedList.append('world');
@@ -91,7 +91,7 @@ describe('Linked-List constructor module', () => {
   });
 
   test('should show that when the first node is removed that the head is now world', () => {
-    
+
     let myLinkedList = new LinkedList();
     myLinkedList.append('hello');
     myLinkedList.append('world');
@@ -101,17 +101,47 @@ describe('Linked-List constructor module', () => {
   });
 
   /********************************************************************************
-  *         serialize & deserialize test                                                       *
+  *         insert before method test                                             *
   ********************************************************************************/
-  
-  test('should return a linked-list as raw data buffer and back to linked list', () => {
+  test('should show that insertion is inserted before world', () => {
+
     let myLinkedList = new LinkedList();
     myLinkedList.append('hello');
-    myLinkedList.append('World');
-    myLinkedList.serialize();
-    console.log(myLinkedList);
-    myLinkedList.deSerialize();
-    console.log(myLinkedList);
-    expect(myLinkedList.reconstituted.tail.value).toBe('World');
+    myLinkedList.append('world');
+    myLinkedList.append('!');
+    myLinkedList.insertBefore('world', 'insertion');
+    expect(myLinkedList.current.value).toBe('world');
+    expect(myLinkedList.prev.next.value).toBe('insertion');
   });
+
+  /********************************************************************************
+  *         insert after method test                                              *
+  ********************************************************************************/
+  test('should show that instertion is inserted after world', () => {
+    
+    let myLinkedList = new LinkedList();
+    myLinkedList.append('hello');
+    myLinkedList.append('world');
+    myLinkedList.append('!');
+    myLinkedList.insertAfter('world', 'insertion');
+    expect(myLinkedList.current.value).toBe('world');
+    expect(myLinkedList.current.next.value).toBe('insertion');
+  });
+
+  /********************************************************************************
+  *         serialize & deserialize test                                                       *
+  ********************************************************************************/
+
+  // test('should return a linked-list as raw data buffer and back to linked list', () => {
+  //   let myLinkedList = new LinkedList();
+  //   myLinkedList.append('hello');
+  //   myLinkedList.append('World');
+  //   myLinkedList.serialize();
+  //   console.log(myLinkedList);
+  //   myLinkedList.deSerialize();
+  //   console.log(myLinkedList);
+  //   expect(myLinkedList.reconstituted.tail.value).toBe('World');
+  // });
+
+
 });
