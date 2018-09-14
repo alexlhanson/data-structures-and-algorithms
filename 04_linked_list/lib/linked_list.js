@@ -112,12 +112,15 @@ class LinkedList {
   }
 
   kFromEnd(number) {
+    if(this.head === null){
+      throw new Error('list is empty')     
+    }
     if (number > this.length - 1) {
       throw new Error('number is out of range of list')
     };
-    current = this.head;
-    for (i = 0; i < this.length - 1 - number; i++){
-      current = current.next;
+    this.current = this.head;
+    for (let i = 0; i < this.length - 1 - number; i++){
+      this.current = this.current.next;
     };
     return this.current.value;
   }
@@ -132,7 +135,6 @@ class LinkedList {
   static deSerialize(serializedList) {
     let deSerializedList = serializedList.toString();
     deSerializedList = JSON.parse(deSerializedList);
-    console.log(deSerializedList);
     let newLinkedList = new LinkedList();
     newLinkedList.length = deSerializedList.length;
     newLinkedList.head = deSerializedList.head;
