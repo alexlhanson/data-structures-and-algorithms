@@ -80,11 +80,14 @@ class LinkedList{
     }
     this.current = this.head;
     this.next = this.current.next;
-    while(refVal !== this.current.value){
+    while(refVal !== this.current.value && this.current !== this.tail){
       this.prev = this.current;
       this.current = this.next;
+      this.next = this.current.next;
     };
-
+    if(refVal !== this.current.value){
+      throw new Error('Value not found in list');
+    }
     let newNode = new Node(newVal);
     newNode.next = this.current;
     this.prev.next = newNode;
@@ -96,10 +99,12 @@ class LinkedList{
   insertAfter(refVal, newVal){
     this.current = this.head;
 
-    while(refVal !== this.current.value){
+    while(refVal !== this.current.value && this.current !== this.tail){
       this.current = this.current.next;
     };
-
+    if(refVal !== this.current.value && this.current === this.tail){
+      throw new Error('Value not found in list');
+    }
     let newNode = new Node(newVal);
     newNode.next = this.current.next;
     this.current.next = newNode;

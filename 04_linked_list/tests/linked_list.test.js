@@ -109,9 +109,19 @@ describe('Linked-List constructor module', () => {
     myLinkedList.append('hello');
     myLinkedList.append('world');
     myLinkedList.append('!');
-    myLinkedList.insertBefore('world', 'insertion');
-    expect(myLinkedList.current.value).toBe('world');
+    myLinkedList.insertBefore('!', 'insertion');
+    expect(myLinkedList.current.value).toBe('!');
     expect(myLinkedList.prev.next.value).toBe('insertion');
+  });
+
+  test('should show that error is thrown when the search value is not in the list', () => {
+
+    let myLinkedList = new LinkedList();
+    myLinkedList.append('hello');
+    myLinkedList.append('world');
+    myLinkedList.append('!');
+    expect(() => {myLinkedList.insertBefore('OMG', 'insertion')}).toThrowError('Value not found in list');
+  
   });
 
   /********************************************************************************
@@ -128,6 +138,15 @@ describe('Linked-List constructor module', () => {
     expect(myLinkedList.current.next.value).toBe('insertion');
   });
 
+  test('should show that error is thrown when the search value is not in the list', () => {
+
+    let myLinkedList = new LinkedList();
+    myLinkedList.append('hello');
+    myLinkedList.append('world');
+    myLinkedList.append('!');
+    expect(() => {myLinkedList.insertAfter('OMG', 'insertion')}).toThrowError('Value not found in list');
+  
+  });
   /********************************************************************************
   *         serialize & deserialize test                                                       *
   ********************************************************************************/
