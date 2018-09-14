@@ -23,6 +23,7 @@ class LinkedList{
     this.tail.next = new Node(value);
     this.tail = this.tail.next;
     }
+    this.length++;
   } 
 
   //prepend method - BigO = O(1)
@@ -33,6 +34,7 @@ class LinkedList{
     this.current = new Node(value);
     this.current.next = this.head;
     this.head = this.current;
+    this.length++
   }
 
   //reverse method - BigO = O(n)
@@ -67,6 +69,46 @@ class LinkedList{
       this.head = this.next;
       this.current.next = null;
     }
+    this.length--
+  }
+
+  //insert before method
+
+  insertBefore(refVal, newVal){
+    if (refVal === 0){
+      this.prepend(newVal);
+    }
+    this.current = this.head;
+    this.next = this.current.next;
+    while(refVal !== this.current.value && this.current !== this.tail){
+      this.prev = this.current;
+      this.current = this.next;
+      this.next = this.current.next;
+    };
+    if(refVal !== this.current.value){
+      throw new Error('Value not found in list');
+    }
+    let newNode = new Node(newVal);
+    newNode.next = this.current;
+    this.prev.next = newNode;
+    this.length++;
+  }
+
+  //insert after method
+  
+  insertAfter(refVal, newVal){
+    this.current = this.head;
+
+    while(refVal !== this.current.value && this.current !== this.tail){
+      this.current = this.current.next;
+    };
+    if(refVal !== this.current.value && this.current === this.tail){
+      throw new Error('Value not found in list');
+    }
+    let newNode = new Node(newVal);
+    newNode.next = this.current.next;
+    this.current.next = newNode;
+    this.length++
   }
 
   //serialize method - turns Linked List into raw data -  - BigO = O(1)
