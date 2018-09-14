@@ -120,15 +120,15 @@ describe('Linked-List constructor module', () => {
     myLinkedList.append('hello');
     myLinkedList.append('world');
     myLinkedList.append('!');
-    expect(() => {myLinkedList.insertBefore('OMG', 'insertion')}).toThrowError('Value not found in list');
-  
+    expect(() => { myLinkedList.insertBefore('OMG', 'insertion') }).toThrowError('Value not found in list');
+
   });
 
   /********************************************************************************
   *         insert after method test                                              *
   ********************************************************************************/
   test('should show that instertion is inserted after world', () => {
-    
+
     let myLinkedList = new LinkedList();
     myLinkedList.append('hello');
     myLinkedList.append('world');
@@ -144,23 +144,62 @@ describe('Linked-List constructor module', () => {
     myLinkedList.append('hello');
     myLinkedList.append('world');
     myLinkedList.append('!');
-    expect(() => {myLinkedList.insertAfter('OMG', 'insertion')}).toThrowError('Value not found in list');
-  
+    expect(() => { myLinkedList.insertAfter('OMG', 'insertion') }).toThrowError('Value not found in list');
+
   });
   /********************************************************************************
-  *         serialize & deserialize test                                                       *
+  *         serialize & deserialize tests                                                       *
+  ********************************************************************************/
+  test('should return a linked-list as raw data buffer', () => {
+    let myLinkedList = new LinkedList();
+    myLinkedList.append('hello');
+    myLinkedList.append('World');
+    let serializedList = myLinkedList.serialize();
+    expect(typeof serializedList).toBe('object');
+  });
+
+  test('should return a linked-list as raw data buffer and back to linked list', () => {
+    let myLinkedList = new LinkedList();
+    myLinkedList.append('hello');
+    myLinkedList.append('World');
+    let serializedList = myLinkedList.serialize();
+    let deserializedList = LinkedList.deSerialize(serializedList);
+    expect(deserializedList.head.value).toBe('hello');
+  });
+
+  test('deserialized list has properties of the Class Linked List', () => {
+    let myLinkedList = new LinkedList();
+    myLinkedList.append('hello');
+    myLinkedList.append('World');
+    let serializedList = myLinkedList.serialize();
+    let deserializedList = LinkedList.deSerialize(serializedList);
+    deserializedList.append('still the world');
+    expect(deserializedList.tail.value).toBe('still the world');
+  });
+
+  /********************************************************************************
+  *         k from end tests                                                      *
   ********************************************************************************/
 
-  // test('should return a linked-list as raw data buffer and back to linked list', () => {
-  //   let myLinkedList = new LinkedList();
-  //   myLinkedList.append('hello');
-  //   myLinkedList.append('World');
-  //   myLinkedList.serialize();
-  //   console.log(myLinkedList);
-  //   myLinkedList.deSerialize();
-  //   console.log(myLinkedList);
-  //   expect(myLinkedList.reconstituted.tail.value).toBe('World');
-  // });
+  test('should return the value from the second node from the end', () => {
+    let myLinkedList = new LinkedList();
+    myLinkedList.append('hello');
+    myLinkedList.append('world');
+    myLinkedList.append('!');
+    expect(myLinkedList.kFromEnd(2)).toBe('world');
+  });
+  
+  test('should return the value from the second node from the end', () => {
+    let myLinkedList = new LinkedList();
+    myLinkedList.append('hello');
+    myLinkedList.append('world');
+    myLinkedList.append('!');
+    expect(()=>{myLinkedList.kFromEnd(4)}).toThrowError('number is out of range of list');
+  });
 
+  test('should return the value from the second node from the end', () => {
+    let myLinkedList = new LinkedList();
+    expect(()=>{myLinkedList.kFromEnd(0)}).toThrowError('list is empty');
+  });
 
 });
