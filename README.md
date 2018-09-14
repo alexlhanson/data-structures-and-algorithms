@@ -26,3 +26,21 @@ Given a sorted input array and target value to search, return the index of the s
 ### Solution
 ![whiteboard03a](./assets/03_array_binary_search_a.jpg)
 ![whiteboard03b](./assets/03_array_binary_search_b.jpg)
+
+## 04- Binary Search in Array
+Create a linked list data sctructure with methods
+
+### Challenge
+Create linked list data structure and add the methods:
+- append
+- prepend
+- insertBefore
+- insertAfter
+- reverse
+- serialize
+- deserialize
+- kFromEnd   
+
+### Solution
+![whiteboard04a](./assets/04_LL_insert_methods.jpg)
+![whiteboard04b](./assets/04_LL_kfromend.jpg)
