@@ -5,8 +5,8 @@ const fs = require('fs');
 /********************************************************************************
 *         LINKED LIST MODULE                                                    *
 ********************************************************************************/
-class LinkedList{
-  constructor(){
+class LinkedList {
+  constructor() {
     this.length = 1;
     this.head = null;
     this.current = null;
@@ -15,21 +15,21 @@ class LinkedList{
   }
 
   // append method - BigO = O(1)
-  append(value){
-    if (!this.tail){
-      this.head = this.tail = new Node (value);
+  append(value) {
+    if (!this.tail) {
+      this.head = this.tail = new Node(value);
     } else {
-    // this.current = new Node(value);
-    this.tail.next = new Node(value);
-    this.tail = this.tail.next;
+      // this.current = new Node(value);
+      this.tail.next = new Node(value);
+      this.tail = this.tail.next;
     }
     this.length++;
-  } 
+  }
 
   //prepend method - BigO = O(1)
-  prepend(value){
-    if (!this.head){
-      this.head = this.tail = new Node (value);
+  prepend(value) {
+    if (!this.head) {
+      this.head = this.tail = new Node(value);
     };
     this.current = new Node(value);
     this.current.next = this.head;
@@ -38,11 +38,11 @@ class LinkedList{
   }
 
   //reverse method - BigO = O(n)
-  reverse(){
+  reverse() {
     this.current = this.head;
     this.next = this.current.next;
 
-    while (this.current.next != null){
+    while (this.current.next != null) {
       this.current.next = this.prev;
       this.prev = this.current;
       this.current = this.next;
@@ -54,10 +54,10 @@ class LinkedList{
   }
 
   //remove method  - BigO = O(n)
-  remove(offset){
+  remove(offset) {
     this.current = this.head;
     if (offset > 0) {
-      for (let i = 0; i < offset; i++){
+      for (let i = 0; i < offset; i++) {
         this.prev = this.current;
         this.current = this.current.next;
         this.next = this.current.next;
@@ -74,18 +74,18 @@ class LinkedList{
 
   //insert before method
 
-  insertBefore(refVal, newVal){
-    if (refVal === 0){
+  insertBefore(refVal, newVal) {
+    if (refVal === 0) {
       this.prepend(newVal);
     }
     this.current = this.head;
     this.next = this.current.next;
-    while(refVal !== this.current.value && this.current !== this.tail){
+    while (refVal !== this.current.value && this.current !== this.tail) {
       this.prev = this.current;
       this.current = this.next;
       this.next = this.current.next;
     };
-    if(refVal !== this.current.value){
+    if (refVal !== this.current.value) {
       throw new Error('Value not found in list');
     }
     let newNode = new Node(newVal);
@@ -95,14 +95,14 @@ class LinkedList{
   }
 
   //insert after method
-  
-  insertAfter(refVal, newVal){
+
+  insertAfter(refVal, newVal) {
     this.current = this.head;
 
-    while(refVal !== this.current.value && this.current !== this.tail){
+    while (refVal !== this.current.value && this.current !== this.tail) {
       this.current = this.current.next;
     };
-    if(refVal !== this.current.value && this.current === this.tail){
+    if (refVal !== this.current.value && this.current === this.tail) {
       throw new Error('Value not found in list');
     }
     let newNode = new Node(newVal);
@@ -111,17 +111,33 @@ class LinkedList{
     this.length++
   }
 
+  kFromEnd(number) {
+    if (number > this.length - 1) {
+      throw new Error('number is out of range of list')
+    };
+    current = this.head;
+    for (i = 0; i < this.length - 1 - number; i++){
+      current = current.next;
+    };
+    return this.current.value;
+  }
+
   //serialize method - turns Linked List into raw data -  - BigO = O(1)
-  serialize(){
-    let serializedList = JSON.stringify(this.head);
+  serialize() {
+    let serializedList = JSON.stringify(this);
     return serializedList = Buffer.alloc(serializedList.length, serializedList);
   }
 
   //de-serialize method - turns serialized linked list back into linked list  - BigO = O(1)
-  deSerialize(){
-    // console.log(this);
-    let deSerializedList = this.toString();
-    return deSerializedList = JSON.parse(deSerializedList);
+  static deSerialize(serializedList) {
+    let deSerializedList = serializedList.toString();
+    deSerializedList = JSON.parse(deSerializedList);
+    console.log(deSerializedList);
+    let newLinkedList = new LinkedList();
+    newLinkedList.length = deSerializedList.length;
+    newLinkedList.head = deSerializedList.head;
+    newLinkedList.tail = deSerializedList.tail;
+    return newLinkedList;
   }
 };
 
