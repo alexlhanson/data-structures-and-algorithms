@@ -163,7 +163,7 @@ describe('Linked-List constructor module', () => {
     myLinkedList.append('hello');
     myLinkedList.append('World');
     let serializedList = myLinkedList.serialize();
-    let deserializedList = LinkedList.deSerialize(serializedList);
+    let deserializedList = LinkedList.deserialize(serializedList);
     expect(deserializedList.head.value).toBe('hello');
   });
 
@@ -172,7 +172,7 @@ describe('Linked-List constructor module', () => {
     myLinkedList.append('hello');
     myLinkedList.append('World');
     let serializedList = myLinkedList.serialize();
-    let deserializedList = LinkedList.deSerialize(serializedList);
+    let deserializedList = LinkedList.deserialize(serializedList);
     deserializedList.append('still the world');
     expect(deserializedList.tail.value).toBe('still the world');
   });
@@ -186,7 +186,7 @@ describe('Linked-List constructor module', () => {
     myLinkedList.append('hello');
     myLinkedList.append('world');
     myLinkedList.append('!');
-    expect(myLinkedList.kFromEnd(2)).toBe('world');
+    expect(myLinkedList.kFromEnd(1)).toBe('world');
   });
   
   test('should return the value from the second node from the end', () => {
