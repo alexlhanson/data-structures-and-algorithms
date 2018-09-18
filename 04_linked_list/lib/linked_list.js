@@ -7,7 +7,7 @@ const fs = require('fs');
 ********************************************************************************/
 class LinkedList {
   constructor() {
-    this.length = 1;
+    this.length = 0;
     this.head = null;
     this.current = null;
     this.tail = null;
@@ -132,14 +132,33 @@ class LinkedList {
   }
 
   //de-serialize method - turns serialized linked list back into linked list  - BigO = O(1)
-  static deSerialize(serializedList) {
-    let deSerializedList = serializedList.toString();
-    deSerializedList = JSON.parse(deSerializedList);
+  static deserialize(serializedList) {
+    let deserializedList = serializedList.toString();
+    deserializedList = JSON.parse(deserializedList);
     let newLinkedList = new LinkedList();
-    newLinkedList.length = deSerializedList.length;
-    newLinkedList.head = deSerializedList.head;
-    newLinkedList.tail = deSerializedList.tail;
+    newLinkedList.length = deserializedList.length;
+    newLinkedList.head = deserializedList.head;
+    newLinkedList.tail = deserializedList.tail;
     return newLinkedList;
+  }
+  //mergeLists
+  static mergeLists(listOne, listTwo){
+    let startLength = listOne.length;
+    let current = listOne.head;
+    
+    let i = 0;
+    while (i < startLength && listTwo.head !== null){
+      listOne.insertAfter(current.value, listTwo.head.value);
+      listTwo.head = listTwo.head.next;
+      current = current.next.next;
+      i++;
+    }
+    console.log(listOne.head);
+
+    if (listTwo.head){
+      listOne.tail = listTwo.head;
+    }
+    return listOne.head, listOne.length, listOne.tail;
   }
 };
 

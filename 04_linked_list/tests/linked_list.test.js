@@ -163,7 +163,7 @@ describe('Linked-List constructor module', () => {
     myLinkedList.append('hello');
     myLinkedList.append('World');
     let serializedList = myLinkedList.serialize();
-    let deserializedList = LinkedList.deSerialize(serializedList);
+    let deserializedList = LinkedList.deserialize(serializedList);
     expect(deserializedList.head.value).toBe('hello');
   });
 
@@ -172,7 +172,7 @@ describe('Linked-List constructor module', () => {
     myLinkedList.append('hello');
     myLinkedList.append('World');
     let serializedList = myLinkedList.serialize();
-    let deserializedList = LinkedList.deSerialize(serializedList);
+    let deserializedList = LinkedList.deserialize(serializedList);
     deserializedList.append('still the world');
     expect(deserializedList.tail.value).toBe('still the world');
   });
@@ -186,7 +186,7 @@ describe('Linked-List constructor module', () => {
     myLinkedList.append('hello');
     myLinkedList.append('world');
     myLinkedList.append('!');
-    expect(myLinkedList.kFromEnd(2)).toBe('world');
+    expect(myLinkedList.kFromEnd(1)).toBe('world');
   });
   
   test('should return the value from the second node from the end', () => {
@@ -200,6 +200,40 @@ describe('Linked-List constructor module', () => {
   test('should return the value from the second node from the end', () => {
     let myLinkedList = new LinkedList();
     expect(()=>{myLinkedList.kFromEnd(0)}).toThrowError('list is empty');
+  });
+
+  /********************************************************************************
+  *         merge list tests                                                      *
+  ********************************************************************************/
+  test('should show two lists where 2nd is zipped into first staggered', () =>{
+
+    let LLOne = new LinkedList();
+    LLOne.append(1);
+    LLOne.append(2);
+    LLOne.append(3);
+    let LLTwo = new LinkedList();
+    LLOne.append(4);
+    LLOne.append(5);
+    LLOne.append(6);
+    LLOne.head, LLOne.length, LLOne.tail = LinkedList.mergeLists(LLOne, LLTwo);
+    
+    expect(LLOne.head.value).toBe(1);
+    expect(LLOne.tail.value).toBe(6);
+    expect(LLOne.length).toBe(6);
+  });
+
+  test('should show two lists where 2nd is zipped into first staggered', () =>{
+
+    let LLOne = new LinkedList();
+    let LLTwo = new LinkedList();
+    LLOne.append(4);
+    LLOne.append(5);
+    LLOne.append(6);
+    LLOne.head, LLOne.length, LLOne.tail = LinkedList.mergeLists(LLOne, LLTwo);
+    
+    expect(LLOne.head.value).toBe(4);
+    expect(LLOne.tail.value).toBe(6);
+    expect(LLOne.length).toBe(3);
   });
 
 });
