@@ -202,4 +202,38 @@ describe('Linked-List constructor module', () => {
     expect(()=>{myLinkedList.kFromEnd(0)}).toThrowError('list is empty');
   });
 
+  /********************************************************************************
+  *         merge list tests                                                      *
+  ********************************************************************************/
+  test('should show two lists where 2nd is zipped into first staggered', () =>{
+
+    let LLOne = new LinkedList();
+    LLOne.append(1);
+    LLOne.append(2);
+    LLOne.append(3);
+    let LLTwo = new LinkedList();
+    LLOne.append(4);
+    LLOne.append(5);
+    LLOne.append(6);
+    LLOne.head, LLOne.length, LLOne.tail = LinkedList.mergeLists(LLOne, LLTwo);
+    
+    expect(LLOne.head.value).toBe(1);
+    expect(LLOne.tail.value).toBe(6);
+    expect(LLOne.length).toBe(6);
+  });
+
+  test('should show two lists where 2nd is zipped into first staggered', () =>{
+
+    let LLOne = new LinkedList();
+    let LLTwo = new LinkedList();
+    LLOne.append(4);
+    LLOne.append(5);
+    LLOne.append(6);
+    LLOne.head, LLOne.length, LLOne.tail = LinkedList.mergeLists(LLOne, LLTwo);
+    
+    expect(LLOne.head.value).toBe(4);
+    expect(LLOne.tail.value).toBe(6);
+    expect(LLOne.length).toBe(3);
+  });
+
 });

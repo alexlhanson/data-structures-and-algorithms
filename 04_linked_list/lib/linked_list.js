@@ -141,6 +141,25 @@ class LinkedList {
     newLinkedList.tail = deserializedList.tail;
     return newLinkedList;
   }
+  //mergeLists
+  static mergeLists(listOne, listTwo){
+    let startLength = listOne.length;
+    let current = listOne.head;
+    
+    let i = 0;
+    while (i < startLength && listTwo.head !== null){
+      listOne.insertAfter(current.value, listTwo.head.value);
+      listTwo.head = listTwo.head.next;
+      current = current.next.next;
+      i++;
+    }
+    console.log(listOne.head);
+
+    if (listTwo.head){
+      listOne.tail = listTwo.head;
+    }
+    return listOne.head, listOne.length, listOne.tail;
+  }
 };
 
 module.exports = LinkedList;
