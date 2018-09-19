@@ -27,7 +27,7 @@ Given a sorted input array and target value to search, return the index of the s
 ![whiteboard03a](./assets/03_array_binary_search_a.jpg)
 ![whiteboard03b](./assets/03_array_binary_search_b.jpg)
 
-## 04- Binary Search in Array
+## 04- Linked-Lists
 Create a linked list data sctructure with methods
 
 ### Challenge
@@ -44,3 +44,19 @@ Create linked list data structure and add the methods:
 ### Solution
 ![whiteboard04a](./assets/04_LL_insert_methods.jpg)
 ![whiteboard04b](./assets/04_LL_kfromend.jpg)
+![whiteboard04c](./assets/04_LL_method.jpg)
+
+## 05- Stacks and Queues
+Create stack and queue data sctructures with methods
+
+### Challenge
+Create stacks and queues data structures and add the methods:
+- stacks:
+  - push
+  - pop
+  - serialize/deserialize
+- queues:
+  - enqueue
+  - dequeue
+  - serialize/deserialize
+
