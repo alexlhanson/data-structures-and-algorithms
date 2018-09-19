@@ -177,6 +177,7 @@ describe('Linked-List constructor module', () => {
     expect(deserializedList.tail.value).toBe('still the world');
   });
 
+  
   /********************************************************************************
   *         k from end tests                                                      *
   ********************************************************************************/

@@ -55,6 +55,7 @@ class LinkedList {
 
   //remove method  - BigO = O(n)
   remove(offset) {
+    if (!this.length) return;
     this.current = this.head;
     if (offset > 0) {
       for (let i = 0; i < offset; i++) {
@@ -63,13 +64,16 @@ class LinkedList {
         this.next = this.current.next;
       }
       this.prev.next = this.next;
+      this.data = this.current;
       this.current.next = null;
     } else {
       this.next = this.current.next;
       this.head = this.next;
+      this.data = this.current;
       this.current.next = null;
     }
     this.length--
+    return this.data
   }
 
   //insert before method
@@ -153,8 +157,6 @@ class LinkedList {
       current = current.next.next;
       i++;
     }
-    console.log(listOne.head);
-
     if (listTwo.head){
       listOne.tail = listTwo.head;
     }
