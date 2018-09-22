@@ -1,0 +1,14 @@
+{
+  "name": "06_queue_with_stacks",
+  "version": "1.0.0",
+  "description": "",
+  "main": "queue_with_stacks.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "Alex Hanson <alexlhanson@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^23.6.0"
+  }
+}

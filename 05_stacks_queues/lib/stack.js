@@ -10,15 +10,18 @@ class Stack {
 
   constructor(){
     this.storage = new LinkedList();
+    this.size = 0
   }
 
   push(item){
     if(item === undefined) {throw new Error('Error: push of undefined not accepted');}
     this.storage.prepend(item);
+    this.size++;
   }
 
   pop(){
     let data = this.storage.remove(0);
+    this.size--;
     return data;
   }
 
