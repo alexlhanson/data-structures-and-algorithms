@@ -13,11 +13,11 @@ class Queue {
 
   enqueue(item){
     if(item === undefined) {throw new Error('Error: enqueue of undefined not accepted');}
-    this.storage.prepend(item);
+    this.storage.append(item);
   }
 
   dequeue(){
-    let data = this.storage.remove(this.length - 1);
+    let data = this.storage.remove(0);
     return data;
   }
 

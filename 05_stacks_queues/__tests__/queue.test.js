@@ -21,21 +21,23 @@ describe('queue constructor module', () => {
     let myQueue = new Queue();
     myQueue.enqueue('world');
     myQueue.enqueue('hello');
-    expect(myQueue.storage.head.value).toBe('hello');
+    expect(myQueue.storage.head.value).toBe('world');
   });
 
   test('Should show enqueue works with different data types', () => {
     let myQueue = new Queue();
-    myQueue.enqueue('world');
     myQueue.enqueue(1);
     expect(myQueue.storage.head.value).toBe(1);
 
-    myQueue.enqueue(true)
+    myQueue.dequeue();
+    myQueue.enqueue(true);
     expect(myQueue.storage.head.value).toBe(true);
 
+    myQueue.dequeue();
     myQueue.enqueue({})
     expect(myQueue.storage.head.value).toEqual({});
 
+    myQueue.dequeue();
     myQueue.enqueue(null)
     expect(myQueue.storage.head.value).toBe(null);
   });
@@ -50,13 +52,19 @@ describe('queue constructor module', () => {
   /********************************************************************************
   *         dequeue method tests                                                  *
   ********************************************************************************/
+  test('Should show dequeue will return top node', () => {
+    let myQueue = new Queue();
+    myQueue.enqueue('hello');
+    let actual = myQueue.dequeue();
+    expect(actual.value).toBe('hello');
+  });
 
   test('Should show dequeue works with different data types', () => {
     let myQueue = new Queue();
     myQueue.enqueue('one');
     let actual = myQueue.dequeue();
     expect(actual.value).toBe('one');
-
+    
     myQueue.enqueue(true);
     actual = myQueue.dequeue();
     expect(actual.value).toBe(true);
@@ -70,12 +78,6 @@ describe('queue constructor module', () => {
     expect(actual.value).toEqual({});
   });
 
-  test('Should show dequeue will return top node', () => {
-    let myQueue = new Queue();
-    myQueue.enqueue('hello');
-    let actual = myQueue.dequeue();
-    expect(actual.value).toBe('hello');
-  });
 
   test('Should show dequeue of empty queue is undefined', () => {
     let myQueue = new Queue();
@@ -104,7 +106,7 @@ describe('queue constructor module', () => {
     myQueue.enqueue('world');
     let serializedQueue = myQueue.serialize();
     let deserializedQueue = Queue.deserialize(serializedQueue);
-    expect(deserializedQueue.storage.head.value).toBe('world');
+    expect(deserializedQueue.storage.head.value).toBe('hello');
   })
 
   test('should show that deserialized Queue still has Queue class methods', () => {
@@ -114,7 +116,7 @@ describe('queue constructor module', () => {
     let serializedQueue = myQueue.serialize();
     let deserializedQueue = Queue.deserialize(serializedQueue);
     let dequeuedNode = deserializedQueue.dequeue();
-    expect(dequeuedNode.value).toBe('world');
+    expect(dequeuedNode.value).toBe('hello');
   })
 
 });
