@@ -18,8 +18,10 @@ class LinkedList {
   append(value) {
     if (!this.tail) {
       this.head = this.tail = new Node(value);
+    } else if(!this.head){
+      this.head = new Node(value);
+      this.tail = this.head;
     } else {
-      // this.current = new Node(value);
       this.tail.next = new Node(value);
       this.tail = this.tail.next;
     }
