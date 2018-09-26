@@ -38,5 +38,11 @@ describe('multiBracketValidation', () => {
     expect(shuffled).toBe(false);
   })
 
+  test('Should show that balanced brackets with other characters in between returns true', () => {
+    let otherChars = multiBracketValidation('[[[[asdfasdf]]]]');
+
+    expect(otherChars).toBe(true);
+  })
+
 });
 
