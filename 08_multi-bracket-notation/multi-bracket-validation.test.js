@@ -44,5 +44,12 @@ describe('multiBracketValidation', () => {
     expect(otherChars).toBe(true);
   })
 
+  
+  test('Should show that balanced brackets with other characters in between returns true', () => {
+    let otherChars = multiBracketValidation(']');
+
+    expect(otherChars).toBe(false);
+  })
+
 });
 
