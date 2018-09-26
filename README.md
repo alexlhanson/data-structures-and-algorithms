@@ -60,3 +60,38 @@ Create stacks and queues data structures and add the methods:
   - dequeue
   - serialize/deserialize
 
+## 06- Stacks with Queues
+Create a queue by using stacks
+
+### Challenge
+Make a data structure that is FIFO with only access LIFO data structure. 
+
+### Solution
+![whiteboard06](./assets/06_stacks_with_queues.jpg)
+
+## 07- FIFO Animal Shelter
+An animal shelter takes in dogs and cats, and gives them to new owners.  If someone asks for a dog or cat they get the cat or dog that has been waiting the longest(First in First out - FIFO).
+
+### Challenge
+The function animalShelter takes an optional input of a preference and returns a cat or dog.  If someone asks for a dog or cat from the animal shelter they get the cat or dog that has been waiting the longest.  If they ask for an animal without a preference they get whatever has been waiting the longest.
+
+### Solution
+![whiteboard07](./assets/07_fifo_animal_shelter.jpg)
+
+## 08- Multi-bracket-validation
+Create a function to validate a strings balance for brackets.
+
+### Challenge
+To take a string of whatever size and return true or false if brackets were balanced, meaning each bracket has open and close and can nest within each other while not overlapping.  It is not effected by any non-bracket characters.
+
+Examples:
+{} -> true
+() -> true
+[] -> true
+[{}] -> true
+[{]} -> false
+[true] -> true
+
+### Solution
+![whiteboard08](./assets/08_multi_bracket_validation.jpg)
+
