@@ -1,6 +1,6 @@
 'use strict';
 
-const Stack = require('../05_stacks_queues/lib/stack');
+import Stack from '../05_stacks_queues/lib/stack';
 
 class Queue {
   constructor() {
