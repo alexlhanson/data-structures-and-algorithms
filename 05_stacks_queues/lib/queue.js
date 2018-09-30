@@ -9,15 +9,18 @@ const LinkedList = require('../../04_linked_list/lib/linked_list');
 class Queue {
   constructor(){
     this.storage = new LinkedList();
+    this.size = 0
   }
 
   enqueue(item){
     if(item === undefined) {throw new Error('Error: enqueue of undefined not accepted');}
     this.storage.append(item);
+    this.size++;
   }
 
   dequeue(){
     let data = this.storage.remove(0);
+    this.size--;
     return data;
   }
 
