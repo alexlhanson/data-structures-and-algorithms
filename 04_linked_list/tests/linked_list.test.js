@@ -216,11 +216,9 @@ describe('Linked-List constructor module', () => {
     LLOne.append(4);
     LLOne.append(5);
     LLOne.append(6);
-    LLOne.head, LLOne.length, LLOne.tail = LinkedList.mergeLists(LLOne, LLTwo);
+    LLOne.head = LinkedList.mergeLists(LLOne, LLTwo);
     
     expect(LLOne.head.value).toBe(1);
-    expect(LLOne.tail.value).toBe(6);
-    expect(LLOne.length).toBe(6);
   });
 
   test('should show two lists where 2nd is zipped into first staggered', () =>{
@@ -230,11 +228,9 @@ describe('Linked-List constructor module', () => {
     LLOne.append(4);
     LLOne.append(5);
     LLOne.append(6);
-    LLOne.head, LLOne.length, LLOne.tail = LinkedList.mergeLists(LLOne, LLTwo);
+    LLOne.head = LinkedList.mergeLists(LLOne, LLTwo);
     
     expect(LLOne.head.value).toBe(4);
-    expect(LLOne.tail.value).toBe(6);
-    expect(LLOne.length).toBe(3);
   });
 
 });

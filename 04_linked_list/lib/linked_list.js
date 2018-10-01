@@ -162,7 +162,7 @@ class LinkedList {
     if (listTwo.head){
       listOne.tail = listTwo.head;
     }
-    return listOne.head, listOne.length, listOne.tail;
+    return listOne.head;
   }
 };
 
