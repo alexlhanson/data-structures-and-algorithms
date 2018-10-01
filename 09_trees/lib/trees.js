@@ -30,7 +30,7 @@ class Tree {
           return;
         } else { _walk(childNode.right) }
       } else {
-        // throw new Error(`Cannot insert ${node.value}, already exists`);
+        throw new Error(`Cannot insert ${node.value}, already exists`);
       }
     }
 
@@ -150,7 +150,7 @@ class Tree {
   }
 
   /********************************************************************************
-   *    Depth First Tree to Array and Traversal Patterns                           *
+   *       Tree to Array and Traversal Patterns                                   *
    ********************************************************************************/
   //Create array from walk order root - left - right
   preOrder() {
@@ -198,7 +198,21 @@ class Tree {
 
     return resultsArr
   };
-
+  //console logs the values of each node in breadth first fashion  
+  breadthFirst() {
+    let breadthQueue = new Queue();
+    breadthQueue.enqueue(this.root);
+    let deQ = breadthQueue.dequeue();
+    console.log(deQ.value.value);
+    if (deQ.value.left){breadthQueue.enqueue(deQ.value.left)}
+    if (deQ.value.right){breadthQueue.enqueue(deQ.value.right)} 
+    while(breadthQueue.size){
+      deQ = breadthQueue.dequeue();
+      console.log(deQ.value.value);
+      if (deQ.value.left){breadthQueue.enqueue(deQ.value.left)}
+      if (deQ.value.right){breadthQueue.enqueue(deQ.value.right)}       
+    };
+  };
 
 };
 
