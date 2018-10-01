@@ -106,6 +106,16 @@ Create a constructor function for a tree data structure with the following metho
 - find (node)
 - serialize()
 - deserialize()
+- breadth-first traversal
+
+![whiteboard09](./assets/09_breadth_first_traversal.jpg)
+
+## 10 - FizzBuzz Tree
+Create a function to fizzbuzzify a tree
+
+### Challenge
+Create a function which takes a binary search tree as an input.  It then replaces all nodes in the tree that are multiples of 3 to the string `fizz`, all multiples of 5 as `buzz`, and multiples of both as `fizzbuzz`.
 
 
+![whiteboard10](./assets/10_fizzbuzz_tree.jpg)
 
