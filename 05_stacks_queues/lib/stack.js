@@ -26,7 +26,8 @@ class Stack {
   }
 
   peek(){
-    return this.storage.head.value;
+    if(!this.storage.head){ return null}
+    else { return this.storage.head.value };
   }
 
   serialize(){
@@ -43,3 +44,4 @@ class Stack {
 };
 
 module.exports = Stack;
+

@@ -95,3 +95,17 @@ Examples:
 ### Solution
 ![whiteboard08](./assets/08_multi_bracket_validation.jpg)
 
+## 09- Trees
+Create a constructor function for a tree data structure
+
+### Challenge
+Create a constructor function for a tree data structure with the following methods:
+
+- insert (node)
+- remove (node)
+- find (node)
+- serialize()
+- deserialize()
+
+
+
