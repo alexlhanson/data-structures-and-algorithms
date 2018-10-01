@@ -24,12 +24,13 @@ class Tree {
           childNode.left = node;
           return;
         } else { _walk(childNode.left) }
-      }
-      if (node.value > childNode.value) {
+      } else if (node.value > childNode.value) {
         if (childNode.right === null) {
           childNode.right = node;
           return;
         } else { _walk(childNode.right) }
+      } else {
+        // throw new Error(`Cannot insert ${node.value}, already exists`);
       }
     }
 
@@ -88,8 +89,7 @@ class Tree {
           return node;
         } else {
           //return with two children
-          console.log('getting here')
-          node.value = this._returnCentralMaxLeaf(node.left);
+          node.value = _returnCentralMaxLeaf(node.left);
           return node;
         } 
       }
@@ -97,7 +97,6 @@ class Tree {
       //starts removal
     };
     this.root = _removeNode(this.root, value);
-    console.log(this.root);
     return returnNode;
   };
   
@@ -115,7 +114,6 @@ class Tree {
    *         Helpers                                                               *
   ********************************************************************************/
   _returnCentralMaxLeaf(node) {
-    console.log(node);
     if (node.right === null) {
       if (node.left === null) {
         // if the node.left is leaf
