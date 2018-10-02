@@ -25,39 +25,35 @@ describe('tree constructor', () => {
 ********************************************************************************/
 
 describe('tree insert method', () => {
-  let node1 = new TreeNode(5);
-  let node2 = new TreeNode(3);
-  let node3 = new TreeNode(7);
-  let node4 = new TreeNode('asdf');
-  let node5 = new TreeNode(4);
 
   test('Adding a node adds to root', () => {
-    let testTree = new Tree(node1);
+    let testTree = new Tree(new TreeNode(5));
     expect(testTree.root.value).toBe(5);
   });
 
   test('Adding 4 nodes adds to root children properly', () => {
-    let testTree = new Tree(node2);
-    testTree.insert(node1);
-    testTree.insert(node3);
-    testTree.insert(node5);
+    let testTree = new Tree(new TreeNode(3));
+    testTree.insert(new TreeNode(5));
+    testTree.insert(new TreeNode(4));
+    testTree.insert(new TreeNode(7));
     expect(testTree.root.right.left.value).toBe(4);
     expect(testTree.root.right.right.value).toBe(7);
   });
 
   test('insert method only works with numbers', () => {
-    let testTree = new Tree();
     expect(() => {
-      testTree.insert(node4)
-    }).toThrow('BST only accepts numbers');
+      let testTree = new Tree(new TreeNode(5));
+      testTree.insert(new TreeNode('asdf'));
+      console.log(testTree);
+    }).toThrow('insert method only works with numbers');
   });
 
   test('insert method does not work with repeated values', () => {
     expect(() => {
-      let testTree = new Tree(node3);
-      testTree.insert(node3)
+      let testTree = new Tree(new TreeNode(3));
+      testTree.insert(new TreeNode(3));
       console.log(testTree);
-    }).toThrow(`Cannot insert ${node3.value}, already exists`);
+    }).toThrow(`Cannot insert a value that already exists`);
   });
 
 });
@@ -68,22 +64,22 @@ describe('tree insert method', () => {
 
 describe('find method', () => {
 
-  let node5 = new TreeNode(5);
+  let testTree = new Tree(new TreeNode(5));
   let node3 = new TreeNode(3);
   let node7 = new TreeNode(7);
-
+  
   test('that find method returns root node from BST with 1 node', () => {
-    let testTree = new Tree(node5);
     let actual = testTree.find(5);
     expect(actual.value).toBe(5);
   })
-
+  
   test('that find method returns a node from BST with 3 nodes', () => {
-    let testTree = new Tree(node5);
-    testTree.insert(node3);
-    testTree.insert(node7);
-    let actual = testTree.find(5);
-    expect(actual.value).toBe(5);
+    testTree.root.right = node7;
+    testTree.root.left = node3;
+    let actual = testTree.find(3);
+    expect(actual.value).toBe(3);
+    expect(actual.right).toBe(null);
+
   })
 });
 
@@ -92,46 +88,48 @@ describe('find method', () => {
 ********************************************************************************/
 
 describe('remove method', () => {
-
-  let node5 = new TreeNode(5);
+  let testTree = new Tree(new TreeNode(5));
   let node3 = new TreeNode(3);
   let node7 = new TreeNode(7);
   let node6 = new TreeNode(6);
   let node4 = new TreeNode(4);
-
-
+  
+  
   test('that remove method returns root node from BST with 1 node', () => {
-    let testTree = new Tree(node5);
-    let actual = testTree.remove(5)
+    let removalNode = testTree.find(5);
+    console.log(removalNode);
+    let actual = testTree.remove(removalNode);
     expect(actual.value).toBe(5);
+    expect(testTree.root).toBe(null);
   });
 
-  test('that remove method with long left side removes value and retains tree structure', () => {
-    let testTree = new Tree(node7);//7
-    testTree.insert(node4);//4
-    testTree.insert(node6);//6
-    testTree.insert(node5);//5
-    let actual = testTree.remove(7);
-    expect(actual.value).toBe(7);
-    expect(testTree.root.value).toBe(4);
-    expect(testTree.root.right.left.value).toBe(5);
-  });
+  // test('that remove method with long left side removes value and retains tree structure', () => {
+  //   let testTree2 = new Tree(node7);//7
+  //   testTree2.root.left = node4;//4
+  //   testTree2.root.left.right = node6;//6
+  //   testTree2.root.left.right.left = node5;//5
+  //   let removalNode = testTree2.find(7);
+  //   let actual = testTree.remove(removalNode);
+  //   expect(actual.value).toBe(7);
+  //   expect(testTree.root.value).toBe(4);
+  //   expect(testTree.root.right.left.value).toBe(5);
+  // });
 
-  test('that with long right side removes value and retains tree structure', () => {
-    node5 = new TreeNode(5);
-    node3 = new TreeNode(3);
-    node6 = new TreeNode(6);
-    node4 = new TreeNode(4);
+  // test('that with long right side removes value and retains tree structure', () => {
     
-    let testTree2 = new Tree(node3);//3
-    testTree2.insert(node4);//4
-    testTree2.insert(node6);//6
-    testTree2.insert(node5);//5
-    let actual = testTree2.remove(4);
-    expect(actual.value).toBe(4);
-    expect(testTree2.root.value).toBe(3);
-    expect(testTree2.root.right.value).toBe(6);
-  });
+  //   let testTree3 = new Tree(node3);//3
+  //   testTree3.root.right = node4;
+  //   testTree3.root.right.right = node6;
+  //   testTree3.root.right.left = node5;
+
+  //   testTree2.insert(node4);//4
+  //   testTree2.insert(node6);//6
+  //   testTree2.insert(node5);//5
+  //   let actual = testTree2.remove(4);
+  //   expect(actual.value).toBe(4);
+  //   expect(testTree2.root.value).toBe(3);
+  //   expect(testTree2.root.right.value).toBe(6);
+  // });
 
 });
 
@@ -142,18 +140,14 @@ describe('remove method', () => {
 describe('breadth first traversal', () => {
 
   test('should show it goes breadth first', () => {
-    let node10 = new TreeNode(10);
-    let node20 = new TreeNode(20);
-    let node15 = new TreeNode(15);
-    let node5 = new TreeNode(5);
-    let node1 = new TreeNode(1);
+    let testTree = new Tree(new TreeNode(10));
+    testTree.root.left = new TreeNode(5);
+    testTree.root.left.left = new TreeNode(1);
+    testTree.root.right = new TreeNode(15);
+    testTree.root.right.right = new TreeNode(20);
+    let actual = testTree.breadthFirst();
 
-    let testTree = new Tree(node10);
-    testTree.insert(node1);
-    testTree.insert(node15);
-    testTree.insert(node20);
-    testTree.insert(node5);
-    testTree.breadthFirst();
+    expect(actual).toEqual([10, 5, 15, 1, 20]);
   })
 });
 
