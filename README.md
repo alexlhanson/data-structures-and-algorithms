@@ -119,3 +119,12 @@ Create a function which takes a binary search tree as an input.  It then replace
 
 ![whiteboard10](./assets/10_fizzbuzz_tree.jpg)
 
+## 11 - Find Maximum Value on Binary Tree
+Create a function to find the max value of a binary tree
+
+### Challenge
+Create a function which takes a binary tree as an input.  It then traverses the tree reassigning a max value variable when it encounters a higher value.  After traversal it returns a maximum value for the tree.
+
+
+![whiteboard11](./assets/11_bt_find_max_val.jpg)
+
