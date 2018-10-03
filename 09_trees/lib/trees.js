@@ -14,8 +14,8 @@ class Tree {
    ********************************************************************************/
   insert(node) {
     if (typeof(node.value) !== "number") throw new Error('insert method only works with numbers');
-    if (!this.root.value) {
-      return this.root.value = node.value
+    if (!this.root) {
+      return this.root = node
     };
 
     let _walk = (childNode) => {
@@ -95,12 +95,17 @@ class Tree {
   };
   //serialize method
   serialize() {
+    let treeArr = this.preOrder();
+    let serTree = Buffer.from(treeArr);
+    return serTree;
   }
 
   //deserialize method
   static deserialize(serializedTree) {
-    let treeArr = this.preOrder();
-    let buffArr = Buffer.from(Array)
+    serializedTree = Array.from(serializedTree);
+    let deserializedTree = new Tree();
+    serializedTree.forEach(element => deserializedTree.insert(new TreeNode(element)));
+    return deserializedTree;
   }
 
   /********************************************************************************
@@ -136,7 +141,7 @@ class Tree {
     let resultsArr = [];
 
     let _walk = node => {
-      results.push(node.value);
+      resultsArr.push(node.value);
       if (node.left) _walk(node.left);
       if (node.right) _walk(node.right);
     }
@@ -153,7 +158,7 @@ class Tree {
     let _walk = node => {
       if (node.left) _walk(node.left);
       if (node.right) _walk(node.right);
-      results.push(node.value);
+      resultsArr.push(node.value);
     }
 
     _walk(this.root);
@@ -168,7 +173,7 @@ class Tree {
 
     let _walk = node => {
       if (node.left) _walk(node.left);
-      results.push(node.value);
+      resultsArr.push(node.value);
       if (node.right) _walk(node.right);
     }
 
@@ -193,7 +198,7 @@ class Tree {
       if (deQ.value.left) { breadthQueue.enqueue(deQ.value.left) }
       if (deQ.value.right) { breadthQueue.enqueue(deQ.value.right) }
     };
-    
+
     return resultsArr
   };
 
