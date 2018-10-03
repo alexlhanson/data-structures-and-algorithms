@@ -176,7 +176,7 @@ class Tree {
 
     return resultsArr
   };
-  //console logs the values of each node in breadth first fashion  
+  //pushes the values of each node in breadth first fashion to array 
   breadthFirst() {
     let resultsArr = [];
     let breadthQueue = new Queue();
@@ -193,6 +193,8 @@ class Tree {
       if (deQ.value.left) { breadthQueue.enqueue(deQ.value.left) }
       if (deQ.value.right) { breadthQueue.enqueue(deQ.value.right) }
     };
+    
+    return resultsArr
   };
 
 };
