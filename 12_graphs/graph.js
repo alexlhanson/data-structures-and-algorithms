@@ -1,7 +1,5 @@
 'use strict';
 
-const Queue = require('../05_stacks_queues/lib/queue');
-
 class Graph {
   constructor() {
     this.vertices = {};
@@ -10,23 +8,33 @@ class Graph {
   add(value, neighborsArr) {
     if (!value) { throw new Error('Error: no vertex value provided') }
     if (!neighborsArr) { throw new Error('Error: no neighbors array provided') }
-    
+
     this.vertices[value] = neighborsArr;
   }
 
-  breadthFirstTraversal(startVertex){
-    if (!startVertex) {throw new Error('no starting vertex provided')}
-    if (!this.vertices[startVertex]) {throw new Error('vertex not in graph')}
+  breadthFirstTraversal(startVertex) {
+    if (!startVertex) { throw new Error('Error: no start vertex provided') }
+    if (!this.vertices[startVertex]) { throw new Error('Error: vertex not in graph') }
 
-    let traversalQueue = new Queue;
+    let traversalQueue = [startVertex];
     let visitedArr = [startVertex];
+    
+    while (traversalQueue.length) {
+      let deQVertex = traversalQueue.shift();
 
-    traversalQueue.enqueue(startVertex);
-    while(traversalQueue.size > 1){
-      
+      if (!visitedArr.includes(deQVertex)) {
+        visitedArr.push(deQVertex);
+      }
+
+      this.vertices[deQVertex].forEach(neighbor => {
+        if (!visitedArr.includes(neighbor)) {
+          traversalQueue.push(neighbor);
+        }
+      });
     }
-  }
-}
-
+    console.log(visitedArr);
+    return visitedArr;
+  };
+};
 
 module.exports = Graph;
