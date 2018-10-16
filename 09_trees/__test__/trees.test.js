@@ -52,13 +52,6 @@ describe('tree insert method', () => {
     }).toThrow('BST only accepts numbers');
   });
 
-  test('insert method does not work with repeated values', () => {
-    let testTree = new Tree(node3);
-    expect( () => {
-      testTree.insert(node3)
-    }).toThrow(`Cannot insert ${node3.value}, already exists`);
-  });
-
 });
 
 /********************************************************************************
