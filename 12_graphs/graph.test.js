@@ -75,7 +75,7 @@ describe('breadth first traversal', () => {
     expect(() => myGraph.breadthFirstTraversal()).toThrow('Error: no start vertex provided');
   });
 
-  test('shows that no start vertex throws an error', () => {
+  test('shows that vertex not in graph throws an error', () => {
     let myGraph = new Graph();    
     myGraph.vertices = {
       ['a']: ['b', 'c', 'e'],
@@ -85,5 +85,41 @@ describe('breadth first traversal', () => {
       ['e']: ['a', 'd'],
     };
     expect(() => myGraph.breadthFirstTraversal('f')).toThrow('Error: vertex not in graph');
+  });
+});
+
+describe('depth first traversal', () => {
+
+  test('should show an array gets returned', () => {
+    let myGraph = new Graph();    
+    myGraph.vertices = {
+      ['a']: ['b', 'c', 'e'],
+      ['b']: ['a', 'c'],
+      ['c']: ['a', 'b', 'd'],
+      ['d']: ['c', 'e'],
+      ['e']: ['a', 'd'],
+    };
+    let startVertex = 'a';
+    let actual = myGraph.depthFirstTraversal('a');
+
+    expect(actual).toEqual(['a', 'e', 'd', 'c', 'b']);
+  });
+
+  test('shows that no start vertex throws an error', () => {
+    let myGraph = new Graph();    
+
+    expect(() => myGraph.depthFirstTraversal()).toThrow('Error: no start vertex provided');
+  });
+
+  test('shows that vertex not in graph throws an error', () => {
+    let myGraph = new Graph();    
+    myGraph.vertices = {
+      ['a']: ['b', 'c', 'e'],
+      ['b']: ['a', 'c'],
+      ['c']: ['a', 'b', 'd'],
+      ['d']: ['c', 'e'],
+      ['e']: ['a', 'd'],
+    };
+    expect(() => myGraph.depthFirstTraversal('f')).toThrow('Error: vertex not in graph');
   });
 });
