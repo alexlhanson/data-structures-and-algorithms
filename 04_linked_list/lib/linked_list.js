@@ -117,6 +117,8 @@ class LinkedList {
     this.length++
   }
 
+  //k from end method
+
   kFromEnd(number) {
     if(this.head === null){
       throw new Error('list is empty')     
