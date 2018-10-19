@@ -26,6 +26,26 @@ class WeightedGraph{
     }
   }
 
+  hasPath(pathArr){
+    let totalWeight = 0;
+    let pathFound = true;
+    
+    pathFound = pathArr.every((vertex, index, array) => {
+      if(array[index + 1]){
+        if(this.hasEdge(vertex, array[index + 1])){
+          totalWeight += this.hasEdge(vertex, array[index + 1]);
+          return true
+        } else {
+          totalWeight = 0;
+          return false;
+        }
+      }
+      return true;
+    });
+    
+    return [pathFound, totalWeight]
+  }
+
 }
 
 

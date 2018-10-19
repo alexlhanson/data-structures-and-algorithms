@@ -109,4 +109,29 @@ describe('has edge method', () => {
 
   });
 
+  test('should show that undefined is returned if no edge', () => {
+    let myGraph = new WeightedGraph();
+
+    myGraph.addVertex('Pandora');
+    myGraph.addVertex('Narnia');
+
+    expect(myGraph.hasEdge('Pandora', 'Smurfville')).toBeUndefined;
+  });
+
+});
+
+describe('has path method', () => {
+
+  test('should return the total weight of path for valid path', () => {
+    let myGraph = new WeightedGraph();
+
+    myGraph.addVertex('Pandora');
+    myGraph.addVertex('Narnia');
+    myGraph.addVertex('Smurfville');
+    myGraph.addEdge('Pandora', 'Narnia', 42);
+    myGraph.addEdge('Pandora', 'Smurfville', 2);
+
+    expect(myGraph.hasPath(['Smurfville', 'Pandora', 'Narnia'])).toEqual([true, 44]);
+
+  })
 });
