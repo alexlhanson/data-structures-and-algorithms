@@ -11,6 +11,9 @@ class WeightedGraph{
   }
 
   addEdge(source, dest, weight){
+    if(!source || !dest){throw new Error('Error: no vertices included')}
+    if(!weight){weight = 1};
+
     this.adjList.get(source).set(dest, weight);
     this.adjList.get(dest).set(source, weight);
   }
