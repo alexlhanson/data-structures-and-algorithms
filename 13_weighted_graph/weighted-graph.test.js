@@ -69,10 +69,10 @@ describe('Add Edges Method', () => {
 
     myGraph.addVertex('Pandora');
     myGraph.addVertex('Narnia');
-    
-    expect(() => {myGraph.addEdge()}).toThrow('Error: no vertices included');
 
-  })
+    expect(() => { myGraph.addEdge() }).toThrow('Error: no vertices included');
+
+  });
 
   test('should show that weight is set to 1 if no weight provided', () => {
     let myGraph = new WeightedGraph();
@@ -84,5 +84,29 @@ describe('Add Edges Method', () => {
     expect(myGraph.adjList.get('Pandora').get('Narnia')).toBe(1);
     expect(myGraph.adjList.get('Narnia').get('Pandora')).toBe(1);
 
-  })
+  });
+});
+
+describe('has edge method', () => {
+
+  test('should show that edge exists by returning weight', () => {
+    let myGraph = new WeightedGraph();
+
+    myGraph.addVertex('Pandora');
+    myGraph.addVertex('Narnia');
+    myGraph.addEdge('Pandora', 'Narnia', 42);
+
+    expect(myGraph.hasEdge('Pandora', 'Narnia')).toBe(42);
+  });
+
+  test('should show that error is thrown if parameters not included', () => {
+    let myGraph = new WeightedGraph();
+
+    myGraph.addVertex('Pandora');
+    myGraph.addVertex('Narnia');
+
+    expect(() => { myGraph.hasEdge() }).toThrow('Error: no vertices included');
+
+  });
+
 });

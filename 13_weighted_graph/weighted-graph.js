@@ -18,7 +18,13 @@ class WeightedGraph{
     this.adjList.get(dest).set(source, weight);
   }
 
+  hasEdge(source, dest){
+    if(!source || !dest){throw new Error('Error: no vertices included')}
 
+    if(this.adjList.has(source) && this.adjList.get(source).has(dest)){
+      return this.adjList.get(source).get(dest);
+    }
+  }
 
 }
 
