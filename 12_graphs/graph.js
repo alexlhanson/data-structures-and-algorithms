@@ -67,7 +67,6 @@ class Graph {
       }
     }
 
-    console.log(visitedArr);
     return visitedArr;
   };
 };
