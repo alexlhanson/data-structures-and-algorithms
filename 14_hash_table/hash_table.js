@@ -50,6 +50,7 @@ class HashTable {
     let bucketLL = this.buckets[hashedVal];
     let result = HashTable._remove(key, bucketLL);
 
+    if(!result){return};
     return result[key];
   }
 
@@ -87,8 +88,7 @@ class HashTable {
   }
 
   static _remove(key, bucketLL) {
-    console.log(bucketLL);  
-    if (bucketLL.length === 0) {return};
+    if (!bucketLL || bucketLL.length === 0) {return};
     if (bucketLL.head.value[key]) {
       let result = bucketLL.head.value;
       bucketLL.head = bucketLL.head.next;
@@ -106,7 +106,7 @@ class HashTable {
       }
     }
     let result = bucketLL.current.value;
-    bucketLL.previous = bucketLL.next;
+    bucketLL.previous.next = bucketLL.next;
     bucketLL.current.next = null;
     bucketLL.length--;
 

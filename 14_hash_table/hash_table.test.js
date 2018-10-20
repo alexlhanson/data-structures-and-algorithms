@@ -116,7 +116,7 @@ describe('get method', () => {
 
   describe('remove method', () => {
 
-    test.only('should return the value of key from hash table', () => {
+    test('should return the value of key from hash table', () => {
     let myHashTable = new HashTable(5);
     myHashTable.set('alex', 15);
     let actual = myHashTable.remove('alex');
@@ -125,9 +125,23 @@ describe('get method', () => {
     expect(myHashTable.get('alex')).toBeUndefined();
     })
 
-    test('', () => {
+    test('should show that remove function works with multiple values in linked list', () => {
+      let myHashTable = new HashTable(5);
+      myHashTable.set('alex', 15);
+      myHashTable.set('d', 20);
+      myHashTable.set('i', 25);
+      myHashTable.set('n', 30);
 
+      let actual = myHashTable.remove('i');
+  
+      expect(actual).toBe(25);
+      expect(myHashTable.get('i')).toBeUndefined();
     })
+
+    test('should return return error if trying to remove a value that is not in HashTable', () => {
+      let myHashTable = new HashTable(5);
+      expect(myHashTable.remove('alex')).toBeUndefined();  
+    });
   });
 
   describe('serialize and deserialize tests', () => {
