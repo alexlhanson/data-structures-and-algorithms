@@ -38,6 +38,7 @@ class HashTable {
 
     //has a O(1) for append so overall is still O(n) to remove and append order won't matter in hash table
     let result = HashTable._remove(key, bucketLL);
+    if (!result) {return};
     bucketLL.append(result);
     return result[key];
   }
@@ -86,10 +87,12 @@ class HashTable {
   }
 
   static _remove(key, bucketLL) {
-
+    console.log(bucketLL);  
+    if (bucketLL.length === 0) {return};
     if (bucketLL.head.value[key]) {
       let result = bucketLL.head.value;
       bucketLL.head = bucketLL.head.next;
+      bucketLL.length--;
       return result;
     }
     bucketLL.current = bucketLL.head;
@@ -105,6 +108,7 @@ class HashTable {
     let result = bucketLL.current.value;
     bucketLL.previous = bucketLL.next;
     bucketLL.current.next = null;
+    bucketLL.length--;
 
     return result;
   }

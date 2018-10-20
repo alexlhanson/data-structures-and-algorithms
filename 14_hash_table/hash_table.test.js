@@ -114,20 +114,21 @@ describe('get method', () => {
     expect(() => { myHashTable.get() }).toThrow('no key provided for get');
   });
 
-  // describe('remove method', () => {
+  describe('remove method', () => {
 
-  //   test('should return the value of key from hash table', () => {
-  //   let myHashTable = new HashTable(5);
-  //   myHashTable.set('alex', 15);
-  //   let actual = myHashTable.remove('alex');
+    test.only('should return the value of key from hash table', () => {
+    let myHashTable = new HashTable(5);
+    myHashTable.set('alex', 15);
+    let actual = myHashTable.remove('alex');
 
-  //   expect(actual).toBe(15); 
-  //   })
+    expect(actual).toBe(15);
+    expect(myHashTable.get('alex')).toBeUndefined();
+    })
 
-  //   test('', () => {
+    test('', () => {
 
-  //   })
-  // });
+    })
+  });
 
   describe('serialize and deserialize tests', () => {
 
@@ -145,7 +146,7 @@ describe('get method', () => {
       myHashTable.set('alex', 15);
       let serialHash = myHashTable.serialize();
       let deserialHash = HashTable.deserialize(serialHash);
-      
+
       let hashedVal = myHashTable.multHash('alex');
       let actual = deserialHash.buckets[hashedVal];
   
