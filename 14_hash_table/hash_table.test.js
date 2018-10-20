@@ -106,18 +106,59 @@ describe('get method', () => {
     expect(myHashTable.get('n')).toBe(30);
     expect(myHashTable.get('i')).toBe(25);
 
-  })
+  });
 
   test('should throw error if no key is provided', () => {
     let myHashTable = new HashTable(5);
 
     expect(() => { myHashTable.get() }).toThrow('no key provided for get');
-  })
+  });
 
-  describe('remove method', () => {
+  // describe('remove method', () => {
 
-    test('should return the key value pair and remove', () => {
+  //   test('should return the value of key from hash table', () => {
+  //   let myHashTable = new HashTable(5);
+  //   myHashTable.set('alex', 15);
+  //   let actual = myHashTable.remove('alex');
 
+  //   expect(actual).toBe(15); 
+  //   })
+
+  //   test('', () => {
+
+  //   })
+  // });
+
+  describe('serialize and deserialize tests', () => {
+
+    test('should show serialize causes hashTable to be turned into a buffer', () => {
+      let myHashTable = new HashTable(5);
+      myHashTable.set('alex', 15);
+
+      let actual = myHashTable.serialize();
+      expect(actual).toBeInstanceOf(Buffer);
+
+    })
+
+    test('should show root value in a deserialized serialized list to be the same as before', () => {
+      let myHashTable = new HashTable(5);
+      myHashTable.set('alex', 15);
+      let serialHash = myHashTable.serialize();
+      let deserialHash = HashTable.deserialize(serialHash);
+      
+      let hashedVal = myHashTable.multHash('alex');
+      let actual = deserialHash.buckets[hashedVal];
+  
+      expect(actual.head.value['alex']).toBe(15);
+    })
+
+    test('should show that deserialized tree still has Tree class methods', () => {
+      let myHashTable = new HashTable(5);
+      myHashTable.set('alex', 15);
+      let serialHash = myHashTable.serialize();
+      let deserialHash = HashTable.deserialize(serialHash);
+
+      expect(deserialHash.get('alex')).toBe(15);
     })
   });
 });
