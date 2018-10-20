@@ -32,16 +32,14 @@ class HashTable {
   }
 
   get(key){
-    if (!key){throw new Error('no key provided for hashing')}
+    if (!key){throw new Error('no key provided for get')}
     let hashedVal = this.multHash(key);
     let bucketLL = this.buckets[hashedVal];
     //has a O(1) for append so overall is still O(n) to remove and append order won't matter in hash table
-    let result = bucketLL.remove(key);
+    let result = HashTable._remove(key, bucketLL);
     bucketLL.append(result);
-
-    return result.value[key];
+    return result[key];
   }
-
 
   remove(key){
 
@@ -53,6 +51,24 @@ class HashTable {
 
   deserialize(){
 
+  }
+
+  static _remove(key, bucketLL){
+    bucketLL.current = bucketLL.head;
+    bucketLL.previous = bucketLL.head;
+    bucketLL.next = bucketLL.current.next;
+    while(!bucketLL.current.value[key]){
+      bucketLL.previous = bucketLL.current;
+      if (bucketLL.current.next){
+        bucketLL.current = bucketLL.next;
+        bucketLL.next = bucketLL.current.next;
+      }
+    }
+    let result = bucketLL.current.value;
+    bucketLL.previous = bucketLL.next;
+    bucketLL.current.next = null;
+
+    return result;
   }
 }
 

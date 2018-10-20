@@ -86,6 +86,38 @@ describe('get method', () => {
     myHashTable.set('alex', 15);
 
     expect(myHashTable.get('alex')).toBe(15);
+  })
+
+  test('should show that get method grabs value from bucket', () => {
+    let myHashTable = new HashTable(5);
+    myHashTable.set('alex', 15);
+    myHashTable.set('d', 120);
+
+    expect(myHashTable.get('d')).toBe(120);
+  })
+
+  test('should show that get method grabs value from buck with multiple nodes', () => {
+    let myHashTable = new HashTable(5);
+    myHashTable.set('alex', 15);
+    myHashTable.set('d', 20);
+    myHashTable.set('i', 25);
+    myHashTable.set('n', 30);
+
+    expect(myHashTable.get('n')).toBe(30);
+    expect(myHashTable.get('i')).toBe(25);
 
   })
+
+  test('should throw error if no key is provided', () => {
+    let myHashTable = new HashTable(5);
+
+    expect(() => { myHashTable.get() }).toThrow('no key provided for get');
+  })
+
+  describe('remove method', () => {
+
+    test('should return the key value pair and remove', () => {
+
+    })
+  });
 });
