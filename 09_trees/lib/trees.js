@@ -13,7 +13,7 @@ class Tree {
    *         BST  Methods                                                          *
    ********************************************************************************/
   insert(node) {
-    if (typeof(node.value) !== "number") throw new Error('insert method only works with numbers');
+    if (typeof (node.value) !== "number") throw new Error('insert method only works with numbers');
     if (!this.root) {
       return this.root = node
     };
@@ -63,9 +63,9 @@ class Tree {
       if (node.left === null) {
         if (node.right === null) {
           //return a node that is a leaf
-          if (node === this.root){
+          if (node === this.root) {
             this.root === null;
-          } else {node = null};
+          } else { node = null };
           return;
         } else {
           // return a node with one child on right
@@ -132,75 +132,89 @@ class Tree {
       return node;
   }
 
-  /********************************************************************************
-   *       Tree to Array and Traversal Patterns                                   *
-   ********************************************************************************/
-  //Create array from walk order root - left - right
-  preOrder() {
-
-    let resultsArr = [];
-
-    let _walk = node => {
-      resultsArr.push(node.value);
-      if (node.left) _walk(node.left);
-      if (node.right) _walk(node.right);
+  _traverseCb(node, cb) {
+    console.log(node);
+    if (node.left) {
+      this[_traverseCb](node.left, cb);
     }
 
-    _walk(this.root);
+    cb(node);
 
-    return resultsArr
-  }
-  //Create array from walk order left - right - root
-  postOrder() {
-
-    let resultsArr = [];
-
-    let _walk = node => {
-      if (node.left) _walk(node.left);
-      if (node.right) _walk(node.right);
-      resultsArr.push(node.value);
+    if (node.right) {
+      this[this._traverseCb](node.right, cb);
     }
-
-    _walk(this.root);
-
-    return resultsArr
-  }
-
-  //Create array from walk order left - root - right
-  inOrder() {
-
-    let resultsArr = [];
-
-    let _walk = node => {
-      if (node.left) _walk(node.left);
-      resultsArr.push(node.value);
-      if (node.right) _walk(node.right);
-    }
-
-    _walk(this.root);
-
-    return resultsArr
   };
-  //pushes the values of each node in breadth first fashion to array 
-  breadthFirst() {
-    let resultsArr = [];
-    let breadthQueue = new Queue();
 
-    breadthQueue.enqueue(this.root);
-    let deQ = breadthQueue.dequeue();
 
+/********************************************************************************
+ *       Tree to Array and Traversal Patterns                                   *
+ ********************************************************************************/
+//Create array from walk order root - left - right
+preOrder() {
+
+  let resultsArr = [];
+
+  let _walk = node => {
+    resultsArr.push(node.value);
+    if (node.left) _walk(node.left);
+    if (node.right) _walk(node.right);
+  }
+
+  _walk(this.root);
+
+  return resultsArr
+}
+//Create array from walk order left - right - root
+postOrder() {
+
+  let resultsArr = [];
+
+  let _walk = node => {
+    if (node.left) _walk(node.left);
+    if (node.right) _walk(node.right);
+    resultsArr.push(node.value);
+  }
+
+  _walk(this.root);
+
+  return resultsArr
+}
+
+//Create array from walk order left - root - right
+inOrder() {
+
+  let resultsArr = [];
+
+  let _walk = node => {
+    if (node.left) _walk(node.left);
+    resultsArr.push(node.value);
+    if (node.right) _walk(node.right);
+  }
+
+  _walk(this.root);
+
+  return resultsArr
+};
+//pushes the values of each node in breadth first fashion to array 
+breadthFirst() {
+  let resultsArr = [];
+  let breadthQueue = new Queue();
+
+  breadthQueue.enqueue(this.root);
+  let deQ = breadthQueue.dequeue();
+
+  resultsArr.push(deQ.value.value);
+  if (deQ.value.left) { breadthQueue.enqueue(deQ.value.left) }
+  if (deQ.value.right) { breadthQueue.enqueue(deQ.value.right) }
+  while (breadthQueue.size) {
+    deQ = breadthQueue.dequeue();
     resultsArr.push(deQ.value.value);
     if (deQ.value.left) { breadthQueue.enqueue(deQ.value.left) }
     if (deQ.value.right) { breadthQueue.enqueue(deQ.value.right) }
-    while (breadthQueue.size) {
-      deQ = breadthQueue.dequeue();
-      resultsArr.push(deQ.value.value);
-      if (deQ.value.left) { breadthQueue.enqueue(deQ.value.left) }
-      if (deQ.value.right) { breadthQueue.enqueue(deQ.value.right) }
-    };
-
-    return resultsArr
   };
+
+  return resultsArr
+};
 
 };
 
