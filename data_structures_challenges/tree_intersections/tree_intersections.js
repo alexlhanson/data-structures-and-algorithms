@@ -3,7 +3,7 @@
 const BinaryTree = require('../../09_trees/lib/trees');
 
 const treeIntersection = (tree1, tree2) => {
-
+  if (!tree1 || !tree2){throw new Error('Error: intersection requires two trees')}
   let results = [];
   let traversalCollection = {};
   let traversalCb = (node) => {
@@ -15,8 +15,8 @@ const treeIntersection = (tree1, tree2) => {
     }
   }
 
-  tree1._traverseCb(this.root, traversalCb);
-  tree2._traverseCb(this.root, intersectionCb);
+  tree1.traverseCb(tree1.root, traversalCb);
+  tree2.traverseCb(tree2.root, intersectionCb);
 
   return results;
 };

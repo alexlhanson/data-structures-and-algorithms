@@ -132,16 +132,15 @@ class Tree {
       return node;
   }
 
-  _traverseCb(node, cb) {
-    console.log(node);
+  traverseCb(node, cb) {
     if (node.left) {
-      this[_traverseCb](node.left, cb);
+      this.traverseCb(node.left, cb);
     }
 
     cb(node);
 
     if (node.right) {
-      this[this._traverseCb](node.right, cb);
+      this.traverseCb(node.right, cb);
     }
   };
 
