@@ -1,6 +1,6 @@
 'use strict';
 
-const Stack = require('../05_stacks_queues/lib/stack');
+const Stack = require('../../data_structures/stacks_queues/lib/stack');
 
 let multiBracketValidation = (inputString) => {
   

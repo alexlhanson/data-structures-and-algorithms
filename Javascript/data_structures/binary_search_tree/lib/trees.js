@@ -1,7 +1,7 @@
 'use strict';
 
 const TreeNode = require('../lib/tree-node');
-const Queue = require('../../05_stacks_queues/lib/queue');
+const Queue = require('../../stacks_queues/lib/queue');
 
 class Tree {
 

@@ -1,6 +1,6 @@
 'use strict';
 
-const Queue = require('../05_stacks_queues/lib/queue');
+const Queue = require('../../data_structures/stacks_queues/lib/queue');
 
 class AnimalShelter extends Queue {
   constructor() {

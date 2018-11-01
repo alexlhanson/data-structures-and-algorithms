@@ -9,9 +9,7 @@ class LinkedList {
   constructor() {
     this.length = 0;
     this.head = null;
-    this.current = null;
     this.tail = null;
-    this.prev = null;
   }
 
   // append method - BigO = O(1)
@@ -33,49 +31,53 @@ class LinkedList {
     if (!this.head) {
       this.head = this.tail = new Node(value);
     };
-    this.current = new Node(value);
-    this.current.next = this.head;
-    this.head = this.current;
+    let current = new Node(value);
+    current.next = this.head;
+    this.head = current;
     this.length++
   }
 
   //reverse method - BigO = O(n)
   reverse() {
-    this.current = this.head;
-    this.next = this.current.next;
+    let current = this.head;
+    let prev = null;
+    let next = current.next;
 
-    while (this.current.next != null) {
-      this.current.next = this.prev;
-      this.prev = this.current;
-      this.current = this.next;
-      this.next = this.current.next;
+    while (next) {
+      current.next = prev;
+      prev = current;
+      current = next;
+      next = current.next;
     };
-    this.current.next = this.prev;
+    current.next = prev;
     this.tail = this.head;
-    this.head = this.current;
+    this.head = current;
   }
 
   //remove method  - BigO = O(n)
   remove(offset) {
     if (!this.length) return;
-    this.current = this.head;
+    let current = this.head;
+    let prev = null;
+    let next = current.next;
+    let data = null;
     if (offset > 0) {
       for (let i = 0; i < offset; i++) {
-        this.prev = this.current;
-        this.current = this.current.next;
-        this.next = this.current.next;
+        prev = current;
+        current = current.next;
+        next = current.next;
       }
-      this.prev.next = this.next;
-      this.data = this.current;
-      this.current.next = null;
+      prev.next = next;
+      data = current;
+      current.next = null;
     } else {
-      this.next = this.current.next;
-      this.head = this.next;
-      this.data = this.current;
-      this.current.next = null;
+      next = current.next;
+      this.head = next;
+      data = current;
+      current.next = null;
     }
     this.length--
-    return this.data
+    return data
   }
 
   //insert before method
@@ -103,17 +105,17 @@ class LinkedList {
   //insert after method
 
   insertAfter(refVal, newVal) {
-    this.current = this.head;
+    let current = this.head;
 
-    while (refVal !== this.current.value && this.current !== this.tail) {
-      this.current = this.current.next;
+    while (refVal !== current.value && current !== this.tail) {
+      current = current.next;
     };
-    if (refVal !== this.current.value && this.current === this.tail) {
+    if (refVal !== current.value && current === this.tail) {
       throw new Error('Value not found in list');
     }
     let newNode = new Node(newVal);
-    newNode.next = this.current.next;
-    this.current.next = newNode;
+    newNode.next = current.next;
+    current.next = newNode;
     this.length++
   }
 
@@ -126,11 +128,11 @@ class LinkedList {
     if (number > this.length - 1) {
       throw new Error('number is out of range of list')
     };
-    this.current = this.head;
+    let current = this.head;
     for (let i = 0; i < this.length - 1 - number; i++){
-      this.current = this.current.next;
+      current = current.next;
     };
-    return this.current.value;
+    return current.value;
   }
 
   //serialize method - turns Linked List into raw data -  - BigO = O(1)

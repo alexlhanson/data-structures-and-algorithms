@@ -1,7 +1,7 @@
 'use strict';
 
-const Tree = require('../09_trees/lib/trees');
-const TreeNode = require('../09_trees/lib/tree-node');
+const Tree = require('../../data_structures/binary_search_tree/lib/trees');
+const TreeNode = require('../../data_structures/binary_search_tree/lib/tree-node');
 
 let fizzBuzzTree = (binarySearchTree) => {
   

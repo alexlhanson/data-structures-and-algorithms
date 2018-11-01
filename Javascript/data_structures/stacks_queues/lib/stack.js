@@ -1,6 +1,6 @@
 'use strict';
 
-const LinkedList = require('../../04_linked_list/lib/linked_list');
+const LinkedList = require('../../linked_list/lib/linked_list');
 
 /********************************************************************************
 *         stack data structure module                                           *

@@ -1,7 +1,7 @@
 'use strict';
 
-const Tree = require('../09_trees/lib/trees');
-const Node = require('../09_trees/lib/tree-node');
+const Tree = require('../../data_structures/binary_search_tree/lib/trees');
+const Node = require('../../data_structures/binary_search_tree/lib/tree-node');
 const btFindMax = require('./bt_find-max.js')
 
 describe('binary tree find max', () => {

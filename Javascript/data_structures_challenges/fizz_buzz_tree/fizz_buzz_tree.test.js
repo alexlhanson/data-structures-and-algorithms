@@ -1,8 +1,8 @@
 'use strict'
 
-const Tree = require('../09_trees/lib/trees');
-const TreeNode = require('../09_trees/lib/tree-node');
-const Fbz = require('../10_fizz_buzz_tree/fizz_buzz_tree')
+const Tree = require('../../data_structures/binary_search_tree/lib/trees');
+const TreeNode = require('../../data_structures/binary_search_tree/lib/tree-node');
+const Fbz = require('./fizz_buzz_tree')
 
 describe('fizzbuzz tree', () => {
 
