@@ -1,6 +1,6 @@
 'use strict';
 
-const Queue = require('./../lib/queue');
+const Queue = require('../lib/queue');
 
 describe('queue constructor module', () => {
 
