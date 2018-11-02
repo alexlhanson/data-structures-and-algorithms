@@ -70,11 +70,12 @@ describe('Linked-List constructor module', () => {
   test('Should show that a linked list with three nodes will reverse their order of links', () => {
     let myLinkedList = new LinkedList();
     myLinkedList.append('hello');
+    myLinkedList.append('my');
     myLinkedList.append('world');
     myLinkedList.append('!');
     myLinkedList.reverse();
     expect(myLinkedList.tail.value).toBe('hello');
-    expect(myLinkedList.head.value).toBe('!');
+    expect(myLinkedList.head.next.value).toBe('world');
   });
 
   /********************************************************************************
@@ -134,8 +135,8 @@ describe('Linked-List constructor module', () => {
     myLinkedList.append('world');
     myLinkedList.append('!');
     myLinkedList.insertAfter('world', 'insertion');
-    expect(myLinkedList.current.value).toBe('world');
-    expect(myLinkedList.current.next.value).toBe('insertion');
+    expect(myLinkedList.head.next.value).toBe('world');
+    expect(myLinkedList.head.next.next.value).toBe('insertion');
   });
 
   test('should show that error is thrown when the search value is not in the list', () => {

@@ -1,6 +1,6 @@
 'use strict';
 
-const BinaryTree = require('../../09_trees/lib/trees');
+const BinaryTree = require('../../data_structures/binary_search_tree/lib/trees');
 
 const treeIntersection = (tree1, tree2) => {
   if (!tree1 || !tree2){throw new Error('Error: intersection requires two trees')}
